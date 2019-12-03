@@ -17,10 +17,11 @@ class Stetho {
   ///   runApp(MyApp());
   /// }
   /// ```
-  static Future<void> initialize() async {
+  static Future<void> initialize(
+      {HttpClient Function(SecurityContext context) createHttpClientFn}) async {
     if (Platform.isAndroid) {
-      HttpOverrides.global = StethoHttpOverrides();
-
+      HttpOverrides.global =
+          StethoHttpOverrides(createHttpClientFn: createHttpClientFn);
       return MethodChannelController.initialize();
     }
   }
