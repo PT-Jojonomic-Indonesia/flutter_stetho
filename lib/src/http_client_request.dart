@@ -13,8 +13,10 @@ class StethoHttpClientRequest implements HttpClientRequest {
   final HttpClientRequest request;
   final String id;
 
-  StethoHttpClientRequest(this.request,
-      this.id,);
+  StethoHttpClientRequest(
+    this.request,
+    this.id,
+  );
 
   @override
   void add(List<int> data) {
@@ -144,5 +146,10 @@ class StethoHttpClientRequest implements HttpClientRequest {
   @override
   void writeln([Object obj = ""]) {
     request.writeln(obj);
+  }
+
+  @override
+  void abort([Object exception, StackTrace stackTrace]) {
+    request.abort(exception, stackTrace);
   }
 }
